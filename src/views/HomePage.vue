@@ -14,16 +14,22 @@
       </ion-header>
     
       <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <button  @click="show=!show">Show</button>
       </div>
     </ion-content>
+    <PhotoViewer v-if="show" :value="show" @input="show=$event"  :images="images" />
   </ion-page>
 </template>
 
 <script lang="ts">
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+import PhotoViewer from '@/components/PhotoViewer.vue';
+
+
+import {
+  Image,
+} from '@capacitor-community/photoviewer'
 
 export default defineComponent({
   name: 'HomePage',
@@ -32,7 +38,18 @@ export default defineComponent({
     IonHeader,
     IonPage,
     IonTitle,
-    IonToolbar
+    IonToolbar,
+    PhotoViewer
+},
+setup() {
+    const show = ref (false)
+    const images: Image[] = [
+      {
+        url: '/assets/blank.jpg',
+        title: ''
+      }
+    ]
+    return {show, images}
   }
 });
 </script>
