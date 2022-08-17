@@ -1,0 +1,7 @@
+{
+  "name": "photoviewer-issue-repro",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
